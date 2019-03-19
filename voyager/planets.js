@@ -120,19 +120,32 @@ function clearButton(d,v){
 
 }
 
-function starLocThickness(d,v){
-  starLocThick=Math.random()*d*10+1;
-  console.log("thickness:"+starLocThick)
+function starLocThickness(d,inf){
+  if(!inf){
+    starLocThick=Math.random()*d*10+1;
+  }else{
+    starLocThick+=d;
+  }
+    console.log("thickness:"+starLocThick)
 }
 function verticalitySwitch(d,v){
   if (vertical){vertical=false}else{vertical=true}
 }
 
-function horizonHeight(d,v){
-  horizon=d*24-1600;
+function horizonHeight(d,inf){
+  if(!inf){
+    horizon=d*24-1600;
+  }else{
+    horizon+=d;
+  }
   console.log("horizon: "+horizon)
 }
 
-function landFadeTime(d,v){
-  fadeTime=d*100;
+function landFadeTime(d,inf){
+  if(!inf){
+    fadeTime=d*100;
+  }else{
+    fadeTime+=d;
+  }
+  console.log("fadeTime: "+fadeTime)
 }
