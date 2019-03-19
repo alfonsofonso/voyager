@@ -41,7 +41,7 @@ function onMIDIFailure(e) {// when we get a failed response, run this code
 
 function bus1message(m){// IAC message
   var data = m.data;
-console.log("bus1message:"+data)
+
   if(data[0]==144){
     if(data[2]==64||data[2]==0){return}
     var v=Math.round((data[2]/256+0.5)*1000)/1000;
@@ -52,7 +52,6 @@ console.log("bus1message:"+data)
 function onMIDIMessage(m){ /// midi keyboard message
 
   data = m.data;
-  console.log("data: "+data);
 
   if(mapping){
     mapea(m);///// MAPEANDO
