@@ -48,7 +48,7 @@ function creaDestello(x,y){
   starLocColor=getRandomGris()
 
   if (vertical){
-    destello.graphics.beginFill(starLocColor).drawRect(-starLocThick/2,-1000,starLocThick,9000);//vertical
+    destello.graphics.beginFill(starLocColor).drawRect(-starLocThick/2,-alt,starLocThick,alt*2);//vertical
     destello.x=x*Math.random()*2;destello.y=y;
   }else{
     destello.graphics.beginFill(starLocColor).drawRect(-2000,horizon/2,8000,starLocThick);//horizontal
@@ -59,29 +59,29 @@ function creaDestello(x,y){
   createjs.Tween.get(destello).to({alpha:0 }, fadeTime).call(handleComplete, [destello]);
 }//mirilla
 
-function velocidad(a,i){
+function velocidad(a,i){// velSpacial
   if(!i){//1-127
     velSpacial=a*a*8;
     if(velSpacial<0){velSpacial=0;//corrector
-    }else if(velSpacial>60000){
-      velSpacial=60000;}
+    }else if(velSpacial>120000){
+      velSpacial=120000;}
   }else{// si es encoder
     let e=a-64;
-    velSpacial+=e;
+    velSpacial+=e*50;
     if(velSpacial<0){velSpacial=0;//corrector
-    }else if(velSpacial>20000){
-      velSpacial=20000;}
+    }else if(velSpacial>120000){
+      velSpacial=120000;}
     }
   console.log("velSp: "+velSpacial+" "+i);
 }
 
 function radioPlaneta(a,i){
   if(!i){
-    radioCircle=a/2.5;
+    radioCircle=a/4;
   }else{//encoder
     radioCircle+=a-64;
   }
-  if (radioCircle<1){radioCircle=1}else if(radioCircle>50){radioCircle=50}//corrector
+  if (radioCircle<1){radioCircle=1}else if(radioCircle>32){radioCircle=32}//corrector
   console.log("radioPlantet:" +radioCircle)
 }//radio planets
 
@@ -134,7 +134,7 @@ function verticalitySwitch(d,v){
 
 function horizonHeight(d,inf){
   if(!inf){
-    horizon=d*24-1600;
+    horizon=d/32*alt-2*alt;
   }else{
     horizon+=d;
   }
@@ -143,7 +143,7 @@ function horizonHeight(d,inf){
 
 function landFadeTime(d,inf){
   if(!inf){
-    fadeTime=d*100;
+    fadeTime=d*500;
   }else{
     fadeTime+=d;
   }
